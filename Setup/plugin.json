@@ -1,0 +1,7 @@
+{
+    "title": "Subscription button",
+    "version": "1.00",
+    "name": "SubscriptionButton",
+    "description": "Place widget anywhere on your website and sell subscriptions. This plugin covers just the subscription itself and gives you the status if current user is subscribed or not. This is a foundation to build your own plugin that provides or restricts some services depending on subscription status.",
+    "author": "ImpressPages"
+}
