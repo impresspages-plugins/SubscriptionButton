@@ -19,22 +19,16 @@ class SiteController extends \Ip\Controller
         $widgetData = $widget['data'];
 
 
-$options = array(
-    'item' => 'Plan A',
-    'period' => 1,
-    'periodType' => 'day', //day, week, month, year
-    'amount' => 9900,
-    'currency' => 'USD'
-);
-$subscriptionUrl = ipEcommerce()->subscriptionPaymentUrl($options);
+        $options = array(
+            'item' => $widgetData['alias'],
+            'period' => 1,
+            'periodType' => $widgetData['period'], //day, week, month, year
+            'amount' => $widgetData['price'] * 100,
+            'currency' => $widgetData['currency']
+        );
+        $subscriptionUrl = ipEcommerce()->subscriptionPaymentUrl($options);
 
-        if (!ipUser()->loggedIn()) {
-            $_SESSION['User_redirectAfterLogin'] = ipRouteUrl('SubscriptionButton_subscribe', array('widgetId' => $widgetId));
-            $loginUrl = ipRouteUrl('User_login');
-            return new \Ip\Response\Redirect($loginUrl);
-        }
-
-        return '<a class="button" href="' . escAttr($subscriptionUrl) . '" >Subscribe</a>';
+        return new \Ip\Response\Redirect($subscriptionUrl);
 
     }
 }
